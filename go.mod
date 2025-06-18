@@ -1,4 +1,4 @@
-module github.com/raito-io/bexpression
+module github.com/collibra/go-bexpression
 
 go 1.24
 
@@ -7,10 +7,7 @@ tool (
 	github.com/vektra/mockery/v2
 )
 
-require (
-	github.com/go-errors/errors v1.5.1
-	github.com/stretchr/testify v1.10.0
-)
+require github.com/stretchr/testify v1.10.0
 
 require (
 	github.com/chigopher/pathlib v0.19.1 // indirect

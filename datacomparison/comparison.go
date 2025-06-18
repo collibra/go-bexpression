@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/raito-io/bexpression/base"
+	"github.com/collibra/go-bexpression/base"
 )
 
 //go:generate go run github.com/dmarkham/enumer -type=ComparisonOperator -values -gqlgen -yaml -json -trimprefix=ComparisonOperator

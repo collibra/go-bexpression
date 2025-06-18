@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/raito-io/bexpression/base"
+	"github.com/collibra/go-bexpression/base"
 )
 
 func TestReference_Accept(t *testing.T) {

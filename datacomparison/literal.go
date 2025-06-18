@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/raito-io/bexpression/base"
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/base"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 var LiteralUnionErr = base.NewUnionExpressionError("dataComparison.Literal", []string{"bool", "int", "float", "string", "timestamp"})

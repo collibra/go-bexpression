@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 func TestBinaryExpression_Validate(t *testing.T) {
@@ -172,9 +172,9 @@ func TestBinaryExpression_Accept(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				visitorSetup: func(visitor *MockVisitor, bexpr *BinaryExpression[*MockComparison]) {
-					enterBeCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once()
+					enterBeCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once()
 					literalCall := visitor.EXPECT().Literal(mock.Anything, true).Return(nil).Once().NotBefore(enterBeCall)
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().NotBefore(enterBeCall, literalCall)
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().NotBefore(enterBeCall, literalCall)
 				},
 			},
 			wantErr: false,
@@ -191,11 +191,11 @@ func TestBinaryExpression_Accept(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				visitorSetup: func(visitor *MockVisitor, bexpr *BinaryExpression[*MockComparison]) {
-					enterBeCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once()
+					enterBeCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once()
 
 					compCall := bexpr.Comparison.EXPECT().Accept(mock.Anything, mock.Anything).Return(nil).Once().NotBefore(enterBeCall)
 
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().NotBefore(compCall)
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().NotBefore(compCall)
 				},
 			},
 			wantErr: false,
@@ -217,11 +217,11 @@ func TestBinaryExpression_Accept(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				visitorSetup: func(visitor *MockVisitor, bexpr *BinaryExpression[*MockComparison]) {
-					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Twice()
-					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once()
+					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Twice()
+					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once()
 					visitor.EXPECT().Literal(mock.Anything, true).Return(nil).Once()
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/raito-io/bexpression/base.MockComparison]")).Return().Once()
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().Twice()
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().Once()
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().Twice()
 				},
 			},
 		},
@@ -240,12 +240,12 @@ func TestBinaryExpression_Accept(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				visitorSetup: func(visitor *MockVisitor, bexpr *BinaryExpression[*MockComparison]) {
-					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Twice()
-					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once()
+					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Twice()
+					visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once()
 					visitor.EXPECT().Literal(mock.Anything, UnaryOperatorNot).Return(nil)
 					visitor.EXPECT().Literal(mock.Anything, true).Return(nil).Once()
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().Once()
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().Twice()
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().Once()
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().Twice()
 				},
 			},
 		},

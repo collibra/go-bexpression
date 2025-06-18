@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/raito-io/bexpression/base"
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/base"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 func TestOperand_Accept(t *testing.T) {

@@ -8,9 +8,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/raito-io/bexpression/base"
-	"github.com/raito-io/bexpression/datacomparison"
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/base"
+	"github.com/collibra/go-bexpression/datacomparison"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 var _ (base.Visitor) = (*testVisitor)(nil)

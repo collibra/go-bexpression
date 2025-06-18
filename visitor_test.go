@@ -7,9 +7,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/raito-io/bexpression/base"
-	"github.com/raito-io/bexpression/datacomparison"
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/base"
+	"github.com/collibra/go-bexpression/datacomparison"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 func TestFunctionVisitor(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 var (
