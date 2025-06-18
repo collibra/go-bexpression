@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-//go:generate go run github.com/raito-io/enumer -type=UnaryOperator -values -gqlgen -yaml -json -trimprefix=UnaryOperator
+//go:generate go run github.com/dmarkham/enumer -type=UnaryOperator -values -gqlgen -yaml -json -trimprefix=UnaryOperator
 type UnaryOperator int
 
 const (

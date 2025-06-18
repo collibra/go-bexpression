@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-//go:generate go run github.com/raito-io/enumer -type=AggregatorOperator -values -gqlgen -yaml -json -trimprefix=AggregatorOperator
+//go:generate go run github.com/dmarkham/enumer -type=AggregatorOperator -values -gqlgen -yaml -json -trimprefix=AggregatorOperator
 type AggregatorOperator int
 
 const (

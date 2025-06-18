@@ -7,7 +7,7 @@ import (
 	"github.com/raito-io/bexpression/base"
 )
 
-//go:generate go run github.com/raito-io/enumer -type=ComparisonOperator -values -gqlgen -yaml -json -trimprefix=ComparisonOperator
+//go:generate go run github.com/dmarkham/enumer -type=ComparisonOperator -values -gqlgen -yaml -json -trimprefix=ComparisonOperator
 type ComparisonOperator int
 
 const (

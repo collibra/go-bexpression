@@ -7,7 +7,7 @@ import (
 	"github.com/raito-io/bexpression/base"
 )
 
-//go:generate go run github.com/raito-io/enumer -type=EntityType -values -gqlgen -yaml -json -trimprefix=EntityType
+//go:generate go run github.com/dmarkham/enumer -type=EntityType -values -gqlgen -yaml -json -trimprefix=EntityType
 type EntityType int
 
 const (
