@@ -5,6 +5,7 @@ package datacomparison
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/go-errors/errors"
 	"io"
 	"strconv"
 	"strings"
@@ -59,7 +60,7 @@ func EntityTypeString(s string) (EntityType, error) {
 	if val, ok := _EntityTypeNameToValueMap[strings.ToLower(s)]; ok {
 		return val, nil
 	}
-	return 0, fmt.Errorf("%s does not belong to EntityType values", s)
+	return 0, errors.Errorf("%s does not belong to EntityType values", s)
 }
 
 // EntityTypeValues returns all values of the enum
@@ -93,7 +94,7 @@ func (i EntityType) MarshalJSON() ([]byte, error) {
 func (i *EntityType) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
-		return fmt.Errorf("EntityType should be a string, got %s", data)
+		return errors.Errorf("EntityType should be a string, got %s", data)
 	}
 
 	var err error
@@ -127,7 +128,7 @@ func (i EntityType) MarshalGQL(w io.Writer) {
 func (i *EntityType) UnmarshalGQL(value interface{}) error {
 	str, ok := value.(string)
 	if !ok {
-		return fmt.Errorf("EntityType should be a string, got %T", value)
+		return errors.Errorf("EntityType should be a string, got %T", value)
 	}
 
 	var err error

@@ -5,6 +5,7 @@ package datacomparison
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/go-errors/errors"
 	"io"
 	"strconv"
 	"strings"
@@ -75,7 +76,7 @@ func ComparisonOperatorString(s string) (ComparisonOperator, error) {
 	if val, ok := _ComparisonOperatorNameToValueMap[strings.ToLower(s)]; ok {
 		return val, nil
 	}
-	return 0, fmt.Errorf("%s does not belong to ComparisonOperator values", s)
+	return 0, errors.Errorf("%s does not belong to ComparisonOperator values", s)
 }
 
 // ComparisonOperatorValues returns all values of the enum
@@ -109,7 +110,7 @@ func (i ComparisonOperator) MarshalJSON() ([]byte, error) {
 func (i *ComparisonOperator) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
-		return fmt.Errorf("ComparisonOperator should be a string, got %s", data)
+		return errors.Errorf("ComparisonOperator should be a string, got %s", data)
 	}
 
 	var err error
@@ -143,7 +144,7 @@ func (i ComparisonOperator) MarshalGQL(w io.Writer) {
 func (i *ComparisonOperator) UnmarshalGQL(value interface{}) error {
 	str, ok := value.(string)
 	if !ok {
-		return fmt.Errorf("ComparisonOperator should be a string, got %T", value)
+		return errors.Errorf("ComparisonOperator should be a string, got %T", value)
 	}
 
 	var err error
