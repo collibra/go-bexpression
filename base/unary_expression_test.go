@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 func TestUnaryExpression_Accept(t *testing.T) {
@@ -32,14 +32,14 @@ func TestUnaryExpression_Accept(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				setup: func(visitor *MockVisitor) {
-					enterUnaryCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once()
+					enterUnaryCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once()
 					literalOperatorCall := visitor.EXPECT().Literal(mock.Anything, UnaryOperatorNot).Return(nil).Once().NotBefore(enterUnaryCall)
 
-					enterBexpressionCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once().NotBefore(literalOperatorCall)
+					enterBexpressionCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once().NotBefore(literalOperatorCall)
 					literalCall := visitor.EXPECT().Literal(mock.Anything, true).Return(nil).Once().NotBefore(enterBexpressionCall)
 
-					leaveBexpressionCall := visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().Once().NotBefore(literalCall)
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().NotBefore(leaveBexpressionCall)
+					leaveBexpressionCall := visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().Once().NotBefore(literalCall)
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.UnaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().NotBefore(leaveBexpressionCall)
 				},
 			},
 			wantErr: false,

@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/raito-io/bexpression/base"
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/base"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 var OperandUnionError = base.NewUnionExpressionError("data_comparison.Operand", []string{"Reference", "Literal"})

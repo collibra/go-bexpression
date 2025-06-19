@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/raito-io/bexpression/utils"
+	"github.com/collibra/go-bexpression/utils"
 )
 
 func TestAggregator_Validate(t *testing.T) {
@@ -89,8 +89,8 @@ func TestAggregator_Accept(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				mockSetup: func(visitor *MockVisitor) {
-					aggregatorEnterCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Once()
-					beEnterCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return(nil).Twice().NotBefore(aggregatorEnterCall)
+					aggregatorEnterCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Once()
+					beEnterCall := visitor.EXPECT().EnterExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return(nil).Twice().NotBefore(aggregatorEnterCall)
 
 					literalTrueCall := visitor.EXPECT().Literal(mock.Anything, true).Return(nil).Once()
 
@@ -98,9 +98,9 @@ func TestAggregator_Accept(t *testing.T) {
 
 					literalFalseCall := visitor.EXPECT().Literal(mock.Anything, false).Return(nil).Once()
 
-					beLeaveCall := visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/raito-io/bexpression/base.MockComparison]")).Return().Twice()
+					beLeaveCall := visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.BinaryExpression[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().Twice()
 
-					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/raito-io/bexpression/base.MockComparison]")).Return().NotBefore(beLeaveCall, literalTrueCall, literalFalseCall, beEnterCall, aggregatorEnterCall)
+					visitor.EXPECT().LeaveExpressionElement(mock.Anything, mock.AnythingOfType("*base.Aggregator[*github.com/collibra/go-bexpression/base.MockComparison]")).Return().NotBefore(beLeaveCall, literalTrueCall, literalFalseCall, beEnterCall, aggregatorEnterCall)
 
 				},
 			},

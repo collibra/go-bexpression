@@ -3,7 +3,7 @@ package bexpression
 import (
 	"context"
 
-	"github.com/raito-io/bexpression/base"
+	"github.com/collibra/go-bexpression/base"
 )
 
 type FunctionVisitorOptions struct {
