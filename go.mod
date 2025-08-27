@@ -1,18 +1,18 @@
 module github.com/collibra/go-bexpression
 
-go 1.24.5
+go 1.25.0
 
 tool (
 	github.com/dmarkham/enumer
 	github.com/vektra/mockery/v2
 )
 
-require github.com/stretchr/testify v1.10.0
+require github.com/stretchr/testify v1.11.1
 
 require (
 	github.com/chigopher/pathlib v0.19.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/dmarkham/enumer v1.5.11 // indirect
+	github.com/dmarkham/enumer v1.6.1 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
@@ -36,7 +36,7 @@ require (
 	github.com/spf13/viper v1.20.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
-	github.com/vektra/mockery/v3 v3.5.0 // indirect
+	github.com/vektra/mockery/v2 v2.53.5 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/mod v0.24.0 // indirect
 	golang.org/x/sync v0.14.0 // indirect
