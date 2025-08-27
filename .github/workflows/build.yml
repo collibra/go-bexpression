@@ -37,7 +37,7 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          SONAR_HOST_URL: https://sonarqube.collibra.dev
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_URL }}
         with:
           args: >
             -Dsonar.pullrequest.github.repository=collibra/go-bexpression
@@ -48,7 +48,7 @@ jobs:
         continue-on-error: true
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          SONAR_HOST_URL: https://sonarqube.collibra.dev
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_URL }}
 
       - name: FOSSA Scan
         uses: fossas/fossa-action@v1
