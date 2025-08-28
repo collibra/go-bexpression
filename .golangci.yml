@@ -7,6 +7,7 @@ output:
 linters:
   default: none
   enable:
+    - wsl_v5
     - asasalint
     - bodyclose
     - copyloopvar
@@ -38,8 +39,14 @@ linters:
     - unparam
     - unused
     - whitespace
-    - wsl
   settings:
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
+      disable:
+        - assign
+        - decl
     cyclop:
       max-complexity: 20
       package-average: 0
@@ -102,9 +109,6 @@ linters:
         - .WithMessagef(
         - .WithStack(
         - go-multierror.Append(
-    wsl:
-      allow-assign-and-anything: true
-      allow-cuddle-declarations: true
   exclusions:
     generated: lax
     presets:
