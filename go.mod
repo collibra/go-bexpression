@@ -1,6 +1,6 @@
 module github.com/collibra/go-bexpression
 
-go 1.25.1
+go 1.25.2
 
 tool (
 	github.com/dmarkham/enumer
@@ -37,7 +37,7 @@ require (
 	github.com/spf13/viper v1.20.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
-	github.com/vektra/mockery/v3 v3.5.5 // indirect
+	github.com/vektra/mockery/v2 v2.53.5 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/mod v0.27.0 // indirect
 	golang.org/x/sync v0.16.0 // indirect
