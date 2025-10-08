@@ -3,7 +3,7 @@ dir: '{{.InterfaceDir}}'
 formatter: gofmt
 recursive: true
 structname: '{{.Mock}}{{firstUpper .InterfaceName}}'
-filename: 'mock_{{snakecase .InterfaceName}}_test.go'
+filename: 'mock_{{snakecase .InterfaceName}}.go'
 
 packages:
   github.com/collibra/go-bexpression/base:
