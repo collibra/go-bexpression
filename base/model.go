@@ -10,7 +10,6 @@ type VisitableElement interface {
 	Accept(ctx context.Context, visitor Visitor) error
 }
 
-//go:generate go run github.com/vektra/mockery/v2 --name=Visitor --testonly=False
 type Visitor interface {
 	EnterExpressionElement(ctx context.Context, element VisitableElement) error
 	LeaveExpressionElement(ctx context.Context, element VisitableElement)
@@ -18,7 +17,6 @@ type Visitor interface {
 	Literal(ctx context.Context, l interface{}) error
 }
 
-//go:generate go run github.com/vektra/mockery/v2 --name=Comparison
 type Comparison interface {
 	Validatable
 	VisitableElement
