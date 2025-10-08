@@ -3,7 +3,10 @@ GO := go
 
 gotestsum := go run gotest.tools/gotestsum@latest
 
-generate:
+generate-mocks:
+	$(GO) run github.com/vektra/mockery/v3
+
+generate: generate-mocks
 	go generate ./...
 
 build: generate

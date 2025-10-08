@@ -1,4 +1,12 @@
-inpackage: True
-testonly: True
-with-expecter: True
-keeptree: False
+all: false
+dir: '{{.InterfaceDir}}'
+formatter: gofmt
+recursive: true
+structname: '{{.Mock}}{{firstUpper .InterfaceName}}'
+filename: 'mock_{{snakecase .InterfaceName}}_test.go'
+
+packages:
+  github.com/collibra/go-bexpression/base:
+    interfaces:
+      Visitor:
+      Comparison:
