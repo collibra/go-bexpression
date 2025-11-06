@@ -1,6 +1,6 @@
 module github.com/collibra/go-bexpression
 
-go 1.25.2
+go 1.25.4
 
 tool (
 	github.com/dmarkham/enumer
