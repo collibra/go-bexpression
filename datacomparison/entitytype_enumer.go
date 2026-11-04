@@ -10,11 +10,11 @@ import (
 	"strings"
 )
 
-const _EntityTypeName = "DataObjectColumnReferenceByName"
+const _EntityTypeName = "DataObjectColumnReferenceByNameColumnReferenceByTag"
 
-var _EntityTypeIndex = [...]uint8{0, 10, 31}
+var _EntityTypeIndex = [...]uint8{0, 10, 31, 51}
 
-const _EntityTypeLowerName = "dataobjectcolumnreferencebyname"
+const _EntityTypeLowerName = "dataobjectcolumnreferencebynamecolumnreferencebytag"
 
 func (i EntityType) String() string {
 	if i < 0 || i >= EntityType(len(_EntityTypeIndex)-1) {
@@ -33,20 +33,24 @@ func _EntityTypeNoOp() {
 	var x [1]struct{}
 	_ = x[EntityTypeDataObject-(0)]
 	_ = x[EntityTypeColumnReferenceByName-(1)]
+	_ = x[EntityTypeColumnReferenceByTag-(2)]
 }
 
-var _EntityTypeValues = []EntityType{EntityTypeDataObject, EntityTypeColumnReferenceByName}
+var _EntityTypeValues = []EntityType{EntityTypeDataObject, EntityTypeColumnReferenceByName, EntityTypeColumnReferenceByTag}
 
 var _EntityTypeNameToValueMap = map[string]EntityType{
 	_EntityTypeName[0:10]:       EntityTypeDataObject,
 	_EntityTypeLowerName[0:10]:  EntityTypeDataObject,
 	_EntityTypeName[10:31]:      EntityTypeColumnReferenceByName,
 	_EntityTypeLowerName[10:31]: EntityTypeColumnReferenceByName,
+	_EntityTypeName[31:51]:      EntityTypeColumnReferenceByTag,
+	_EntityTypeLowerName[31:51]: EntityTypeColumnReferenceByTag,
 }
 
 var _EntityTypeNames = []string{
 	_EntityTypeName[0:10],
 	_EntityTypeName[10:31],
+	_EntityTypeName[31:51],
 }
 
 // EntityTypeString retrieves an enum value from the enum constants string name.
