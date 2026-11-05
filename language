@@ -11,7 +11,7 @@ BinaryOperand:
     <Reference>|<Literal>
 
 Reference:
-    ENTITYTYPE ENTITYID
+    ENTITYTYPE ENTITYID | ColumnReferenceByTag TAGKEY [TAGVALUE]
 
 Literal:
     BOOL|INT|FLOAT|STRING|TIMESTAMP
