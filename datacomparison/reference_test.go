@@ -8,6 +8,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"gopkg.in/yaml.v3"
 
 	"github.com/collibra/go-bexpression/base"
 )
@@ -16,6 +17,8 @@ func TestReference_Accept(t *testing.T) {
 	type fields struct {
 		EntityType EntityType
 		EntityID   string
+		TagKey     string
+		TagValue   string
 	}
 	type args struct {
 		ctx          context.Context
@@ -37,6 +40,21 @@ func TestReference_Accept(t *testing.T) {
 				ctx: context.Background(),
 				visitorSetup: func(visitor *base.MockVisitor) {
 					visitor.EXPECT().Literal(mock.Anything, &Reference{EntityType: EntityTypeDataObject, EntityID: "someId1"}).Return(nil).Once()
+				},
+			},
+			wantErr: false,
+		},
+		{
+			name: "tag reference",
+			fields: fields{
+				EntityType: EntityTypeColumnReferenceByTag,
+				TagKey:     "Country",
+				TagValue:   "DE",
+			},
+			args: args{
+				ctx: context.Background(),
+				visitorSetup: func(visitor *base.MockVisitor) {
+					visitor.EXPECT().Literal(mock.Anything, &Reference{EntityType: EntityTypeColumnReferenceByTag, TagKey: "Country", TagValue: "DE"}).Return(nil).Once()
 				},
 			},
 			wantErr: false,
@@ -64,6 +82,8 @@ func TestReference_Accept(t *testing.T) {
 			r := &Reference{
 				EntityType: tt.fields.EntityType,
 				EntityID:   tt.fields.EntityID,
+				TagKey:     tt.fields.TagKey,
+				TagValue:   tt.fields.TagValue,
 			}
 			if err := r.Accept(tt.args.ctx, visitorMock); (err != nil) != tt.wantErr {
 				t.Errorf("Accept() error = %v, wantErr %v", err, tt.wantErr)
@@ -133,18 +153,45 @@ func TestReference_JSONRoundTrip(t *testing.T) {
 	}
 }
 
+func TestReference_YAMLRoundTrip(t *testing.T) {
+	tests := []struct {
+		name     string
+		ref      Reference
+		wantYAML string
+	}{
+		{
+			name:     "tag key and value",
+			ref:      Reference{EntityType: EntityTypeColumnReferenceByTag, TagKey: "Country", TagValue: "DE"},
+			wantYAML: "entityType: ColumnReferenceByTag\ntagKey: Country\ntagValue: DE\n",
+		},
+		{
+			name:     "tag key only omits the value",
+			ref:      Reference{EntityType: EntityTypeColumnReferenceByTag, TagKey: "Country"},
+			wantYAML: "entityType: ColumnReferenceByTag\ntagKey: Country\n",
+		},
+		{
+			name:     "column reference by name omits the tag fields",
+			ref:      Reference{EntityType: EntityTypeColumnReferenceByName, EntityID: "COUNTRY"},
+			wantYAML: "entityType: ColumnReferenceByName\nentityId: COUNTRY\n",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := yaml.Marshal(tt.ref)
+			assert.NoError(t, err)
+			assert.Equal(t, tt.wantYAML, string(got))
+
+			var back Reference
+			assert.NoError(t, yaml.Unmarshal(got, &back))
+			assert.Equal(t, tt.ref, back)
+		})
+	}
+}
+
 func TestEntityType_ColumnReferenceByTag(t *testing.T) {
 	assert.Equal(t, "ColumnReferenceByTag", EntityTypeColumnReferenceByTag.String())
 
 	got, err := EntityTypeString("ColumnReferenceByTag")
 	assert.NoError(t, err)
 	assert.Equal(t, EntityTypeColumnReferenceByTag, got)
-}
-
-func TestReference_Accept_TagReference(t *testing.T) {
-	ref := &Reference{EntityType: EntityTypeColumnReferenceByTag, TagKey: "Country", TagValue: "DE"}
-	visitorMock := base.NewMockVisitor(t)
-	visitorMock.EXPECT().Literal(mock.Anything, ref).Return(nil).Once()
-
-	assert.NoError(t, ref.Accept(context.Background(), visitorMock))
 }
