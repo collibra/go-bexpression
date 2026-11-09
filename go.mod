@@ -7,7 +7,10 @@ tool (
 	github.com/vektra/mockery/v3
 )
 
-require github.com/stretchr/testify v1.11.1
+require (
+	github.com/stretchr/testify v1.11.1
+	gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
 	github.com/brunoga/deep v1.2.5 // indirect
@@ -50,5 +53,4 @@ require (
 	golang.org/x/term v0.35.0 // indirect
 	golang.org/x/text v0.29.0 // indirect
 	golang.org/x/tools v0.37.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
